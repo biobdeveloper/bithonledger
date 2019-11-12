@@ -29,8 +29,10 @@ class TestError(Exception):
 class InsufficientFundsOnWallets(Exception):
     pass
 
+
 class WalletNotInTheBaseError(Exception):
     pass
+
 
 class ExternalAPIsUnreachable(Exception):
     pass

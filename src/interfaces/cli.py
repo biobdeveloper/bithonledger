@@ -104,8 +104,3 @@ class Cli:
                 print(self._format_response(parsed_command, **result))
             except KeyboardInterrupt or EOFError:
                 self.controller.execute('stop')
-
-
-def barkas_foo(name: object,
-               attack: object = 10) -> bool:
-    return True
