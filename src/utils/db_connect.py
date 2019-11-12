@@ -57,7 +57,7 @@ class SessionController:
     def __init__(self,  **kwargs):
         self.debug = kwargs.get('debug')
         self.logger = logger_create(self.__name__, self.debug)
-        self.logger.debug(f"Initialized")
+        self.logger.debug("Initialized")
         self.session = Session()
         self.testnet = kwargs.get('testnet')
         if self.testnet:

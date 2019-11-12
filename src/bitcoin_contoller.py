@@ -21,7 +21,7 @@ class BitcoinController:
         self.interface = kwargs.get('interface')
 
         self.logger = logger_create(self.__name__, self.debug)
-        self.logger.debug(f"Initialized")
+        self.logger.debug("Initialized")
 
         self.conn = SessionController(testnet=self.testnet, debug=self.debug)
         self.settings = self.conn.get_settings()

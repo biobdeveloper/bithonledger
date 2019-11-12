@@ -66,7 +66,7 @@ class BithonledgerMSG:
         not_enough_balance = "Not enough balance, try again",
         unknown_command = "Unknown command\n",
         command_failed = "Failed to execute command: "
-        bad_input = f"Bad value, try again"
+        bad_input = "Bad value, try again"
 
     class system_msg:
         pass
