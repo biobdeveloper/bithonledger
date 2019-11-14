@@ -81,8 +81,8 @@ class Cli:
             if command == 'refresh':
                 pretty_dict = str()
                 for k, v in result[0].items():
-                    pretty_dict += "{}: {} btc\n".format(k, v)
-                    print(pretty_dict)
+                    pretty_dict += "{} :  {} btc\n".format(k, v)
+                result = [pretty_dict, result[1]]
         if '{}' in pretty_result:
             pretty_result = pretty_result.format(*result)
         return pretty_result
