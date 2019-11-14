@@ -2,12 +2,11 @@
 
 """
 import getpass
-
+import string
 
 from src.utils.bithonledger_msg import BithonledgerMSG as MSG
 from src.exceptions import UserCancellation
 from config.system import YES_ANSWERS
-import string
 
 
 def filtered_string(text):
