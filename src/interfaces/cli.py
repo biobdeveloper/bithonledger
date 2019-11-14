@@ -6,6 +6,7 @@ import getpass
 
 from src.utils.bithonledger_msg import BithonledgerMSG as MSG
 from src.exceptions import UserCancellation
+from config.system import YES_ANSWERS
 import string
 
 
@@ -89,7 +90,7 @@ class Cli:
 
     def yes_no_input(self, to_do=MSG.do_this):
         answer = input(MSG.input_msg['yes_no'].format(to_do))
-        if answer in ['yes', 'y', '+', 'ok']:
+        if answer in YES_ANSWERS:
             return True
         return False
 
