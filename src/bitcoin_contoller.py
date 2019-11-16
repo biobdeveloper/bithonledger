@@ -136,16 +136,16 @@ class BitcoinController:
 
     def _broadcast_finalized_tx(self, wif, output, fee=None):
         """
-        :param wif: ``bit.Key object``
-        :param output: ``tuple`` to, amount, "btc"
+        :param wif: ``bit.Key object`` or ``str``
+        :param output: ``tuple`` (to, amount, "btc")
         :param fee: ``float`` satoshis per byte
         """
-        try:
-            if not fee:
-                fee = self._fee_schedule
-            return wif.send([output], fee=fee)
-        except Exception as ex:
-            return ex
+        if not isinstance(wif, self.key):
+            wif = self.key(wif)
+        if not fee:
+            fee = self._fee_schedule
+
+        return wif.send([output], fee=fee)
 
     def _consolidate_tx(self, send_amount: float, to: str):
         outputs = {}
@@ -170,7 +170,7 @@ class BitcoinController:
                     estimate_tx_fee = self._calculate_estimate_fee(wif, [_output], fee_satperbyte)
                     self.logger.debug("estimate fee for {} is {} btc".format(address, estimate_tx_fee))
                     if balance >= send_amount + estimate_tx_fee:
-                        outputs[wif] = [_output]
+                        outputs[wif] = _output
                         break
                 except InsufficientFunds:
                     self.logger.debug(InsufficientFunds)
@@ -273,10 +273,10 @@ class BitcoinController:
     def execute(self, command, *args, **kwargs):
         self.logger.debug(args) if args else None
         self.logger.debug(kwargs) if kwargs else None
-        try:
-            result = self.commands[command](*args, **kwargs)
-            code = 0
-        except Exception as ex:
-            result = type(ex).__name__
-            code = 1
+        # try:
+        result = self.commands[command](*args, **kwargs)
+        code = 0
+        # except Exception as ex:
+        #     result = type(ex).__name__
+        #     code = 1
         return {'code': code, 'result': result}
